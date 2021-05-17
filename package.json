@@ -9,7 +9,8 @@
     "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ dhedge/dhedge",
     "create-local": "graph create --node http://localhost:8020/ dhedge/dhedge",
     "remove-local": "graph remove --node http://localhost:8020/ dhedge/dhedge",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 dhedge/dhedge"
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 dhedge/dhedge",
+    "build-all": "yarn run codegen dhedge.yaml && yarn run build dhedge.yaml && yarn run remove-local && yarn run create-local dhedge.yaml && yarn run deploy-local dhedge.yaml"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.18.0",

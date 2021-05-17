@@ -1387,6 +1387,33 @@ export class Pool extends Entity {
     this.set("tokenPrice", Value.fromBigInt(value));
   }
 
+  get performanceFactor(): i32 {
+    let value = this.get("performanceFactor");
+    return value.toI32();
+  }
+
+  set performanceFactor(value: i32) {
+    this.set("performanceFactor", Value.fromI32(value));
+  }
+
+  get performance(): BigInt {
+    let value = this.get("performance");
+    return value.toBigInt();
+  }
+
+  set performance(value: BigInt) {
+    this.set("performance", Value.fromBigInt(value));
+  }
+
+  get availableManagerFee(): BigInt {
+    let value = this.get("availableManagerFee");
+    return value.toBigInt();
+  }
+
+  set availableManagerFee(value: BigInt) {
+    this.set("availableManagerFee", Value.fromBigInt(value));
+  }
+
   get exchanges(): Array<string> {
     let value = this.get("exchanges");
     return value.toStringArray();
