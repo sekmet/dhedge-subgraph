@@ -67,6 +67,7 @@ export function handleFundCreated(event: FundCreatedEvent): void {
   entity.time = event.params.time;
   entity.managerFeeNumerator = event.params.managerFeeNumerator;
   entity.managerFeeDenominator = event.params.managerFeeDenominator;
+  
   entity.save();
 
   DhedgeTemplate.create(event.params.fundAddress);

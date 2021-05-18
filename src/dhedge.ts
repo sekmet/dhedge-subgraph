@@ -75,7 +75,6 @@ export function handleDeposit(event: DepositEvent): void {
   pool.managerName = contract.managerName();
   pool.fundValue = contract.totalFundValue();
   pool.totalSupply = contract.totalSupply();
-  pool.performanceFactor = BigInt.fromI32(1);
   pool.availableManagerFee = contract.availableManagerFee();
   if (pool.fundValue > BigInt.fromI32(0)){
     pool.performance = pool.fundValue.div( pool.totalSupply.plus(pool.availableManagerFee) ).times( pool.performanceFactor );
@@ -135,7 +134,6 @@ export function handleExchange(event: ExchangeEvent): void {
   pool.manager = contract.manager();
   pool.managerName = contract.managerName();
   pool.totalSupply = contract.totalSupply();
-  pool.performanceFactor = BigInt.fromI32(1);
   pool.availableManagerFee = contract.availableManagerFee();
   if (pool.fundValue > BigInt.fromI32(0)){
     pool.performance = pool.fundValue.div( pool.totalSupply.plus(pool.availableManagerFee) ).times( pool.performanceFactor );
@@ -238,7 +236,6 @@ export function handleTransfer(event: TransferEvent): void {
   pool.managerName = contract.managerName();
   pool.fundValue = contract.totalFundValue();
   pool.totalSupply = contract.totalSupply();
-  //pool.performanceFactor = BigInt.fromI32(1);
   pool.performanceFactor = pool.performanceFactor.times(pool.fundValue).div(pool.fundValue.plus(event.params.value));
   pool.availableManagerFee = contract.availableManagerFee();
   if (pool.fundValue > BigInt.fromI32(0)){
@@ -274,7 +271,6 @@ export function handleWithdrawal(event: WithdrawalEvent): void {
   pool.managerName = contract.managerName();
   pool.fundValue = contract.totalFundValue();
   pool.totalSupply = contract.totalSupply();
-  pool.performanceFactor = BigInt.fromI32(1);
   pool.availableManagerFee = contract.availableManagerFee();
   if (pool.fundValue > BigInt.fromI32(0)){
     pool.performance = pool.fundValue.div( pool.totalSupply.plus(pool.availableManagerFee) ).times( pool.performanceFactor );
