@@ -6,7 +6,7 @@
     "codegen:dhedge": "npm run codegen -- subgraphs/dhedge.yaml",
     "codegen:rates": "npm run codegen -- subgraphs/rates.yaml",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ dhedge/dhedge",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ sekmet/dhedge",
     "create-local": "graph create --node http://localhost:8020/ dhedge/dhedge",
     "remove-local": "graph remove --node http://localhost:8020/ dhedge/dhedge",
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 dhedge/dhedge",

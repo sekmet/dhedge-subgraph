@@ -75,9 +75,9 @@ export function handleDeposit(event: DepositEvent): void {
   pool.managerName = contract.managerName();
   pool.fundValue = contract.totalFundValue();
   pool.totalSupply = contract.totalSupply();
-  pool.performanceFactor = 1;
+  pool.performanceFactor = new BigInt(1);
   pool.availableManagerFee = contract.availableManagerFee();
-  pool.performance = pool.fundValue.div( pool.totalSupply.plus(pool.availableManagerFee) ).times( BigInt.fromI32(pool.performanceFactor) );
+  pool.performance = pool.fundValue.div( pool.totalSupply.plus(pool.availableManagerFee) ).times( pool.performanceFactor );
   pool.isPrivatePool = contract.privatePool();
   pool.tokenPrice = contract.tokenPrice();
   pool.save();
@@ -131,9 +131,9 @@ export function handleExchange(event: ExchangeEvent): void {
   pool.manager = contract.manager();
   pool.managerName = contract.managerName();
   pool.totalSupply = contract.totalSupply();
-  pool.performanceFactor = 1;
+  pool.performanceFactor = new BigInt(1);
   pool.availableManagerFee = contract.availableManagerFee();
-  pool.performance = pool.fundValue.div( pool.totalSupply.plus(pool.availableManagerFee) ).times( BigInt.fromI32(pool.performanceFactor) );
+  pool.performance = pool.fundValue.div( pool.totalSupply.plus(pool.availableManagerFee) ).times( pool.performanceFactor );
   pool.isPrivatePool = contract.privatePool();
   pool.save();
 
@@ -241,9 +241,9 @@ export function handleWithdrawal(event: WithdrawalEvent): void {
   pool.managerName = contract.managerName();
   pool.fundValue = contract.totalFundValue();
   pool.totalSupply = contract.totalSupply();
-  pool.performanceFactor = 1;
+  pool.performanceFactor = new BigInt(1);
   pool.availableManagerFee = contract.availableManagerFee();
-  pool.performance = pool.fundValue.div( pool.totalSupply.plus(pool.availableManagerFee) ).times( BigInt.fromI32(pool.performanceFactor) );
+  pool.performance = pool.fundValue.div( pool.totalSupply.plus(pool.availableManagerFee) ).times( pool.performanceFactor );
   pool.isPrivatePool = contract.privatePool();
   pool.tokenPrice = contract.tokenPrice();
   pool.save();

@@ -1387,13 +1387,13 @@ export class Pool extends Entity {
     this.set("tokenPrice", Value.fromBigInt(value));
   }
 
-  get performanceFactor(): i32 {
+  get performanceFactor(): BigInt {
     let value = this.get("performanceFactor");
-    return value.toI32();
+    return value.toBigInt();
   }
 
-  set performanceFactor(value: i32) {
-    this.set("performanceFactor", Value.fromI32(value));
+  set performanceFactor(value: BigInt) {
+    this.set("performanceFactor", Value.fromBigInt(value));
   }
 
   get performance(): BigInt {

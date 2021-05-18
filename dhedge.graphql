@@ -159,7 +159,7 @@ type Pool @entity {
   totalSupply: BigInt! # uint256
   fundValue: BigInt! # uint256
   tokenPrice: BigInt! # uint256
-  performanceFactor: Int!
+  performanceFactor: BigInt! # uint256
   performance: BigInt! # uint256
   availableManagerFee: BigInt! # uint256
   exchanges: [Exchange!]! @derivedFrom(field: "pool")
