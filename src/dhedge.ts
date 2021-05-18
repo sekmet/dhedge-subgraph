@@ -226,10 +226,35 @@ export function handleTransfer(event: TransferEvent): void {
   let entity = new Transfer(
     event.transaction.hash.toHex() + '-' + event.logIndex.toString()
   );
+  let contract = DHedge.bind(event.params.to);
+  let id = dataSource.address().toHexString();
+  let pool = Pool.load(id);
+  if (!pool) {
+    log.info("Address != Pool: {}", [id]);
+    return;
+  }
+  pool.name = contract.name();
+  pool.manager = contract.manager();
+  pool.managerName = contract.managerName();
+  pool.fundValue = contract.totalFundValue();
+  pool.totalSupply = contract.totalSupply();
+  //pool.performanceFactor = BigInt.fromI32(1);
+  pool.performanceFactor = pool.performanceFactor.times(pool.fundValue).div(pool.fundValue.plus(event.params.value));
+  pool.availableManagerFee = contract.availableManagerFee();
+  if (pool.fundValue > BigInt.fromI32(0)){
+    pool.performance = pool.fundValue.div( pool.totalSupply.plus(pool.availableManagerFee) ).times( pool.performanceFactor );
+  } else {
+    pool.performance = BigInt.fromI32(0);
+  }
+  pool.isPrivatePool = contract.privatePool();
+  pool.tokenPrice = contract.tokenPrice();
+  pool.save();
+
   entity.from = event.params.from;
   entity.to = event.params.to;
   entity.value = event.params.value;
   entity.save();
+
 }
 
 export function handleWithdrawal(event: WithdrawalEvent): void {
