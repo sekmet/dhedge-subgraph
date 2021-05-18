@@ -77,7 +77,11 @@ export function handleDeposit(event: DepositEvent): void {
   pool.totalSupply = contract.totalSupply();
   pool.performanceFactor = BigInt.fromI32(1);
   pool.availableManagerFee = contract.availableManagerFee();
-  pool.performance = pool.fundValue.div( pool.totalSupply.plus(pool.availableManagerFee) ).times( pool.performanceFactor );
+  if (pool.fundValue > BigInt.fromI32(0)){
+    pool.performance = pool.fundValue.div( pool.totalSupply.plus(pool.availableManagerFee) ).times( pool.performanceFactor );
+  } else {
+    pool.performance = BigInt.fromI32(0);
+  }
   pool.isPrivatePool = contract.privatePool();
   pool.tokenPrice = contract.tokenPrice();
   pool.save();
@@ -133,7 +137,11 @@ export function handleExchange(event: ExchangeEvent): void {
   pool.totalSupply = contract.totalSupply();
   pool.performanceFactor = BigInt.fromI32(1);
   pool.availableManagerFee = contract.availableManagerFee();
-  pool.performance = pool.fundValue.div( pool.totalSupply.plus(pool.availableManagerFee) ).times( pool.performanceFactor );
+  if (pool.fundValue > BigInt.fromI32(0)){
+    pool.performance = pool.fundValue.div( pool.totalSupply.plus(pool.availableManagerFee) ).times( pool.performanceFactor );
+  } else {
+    pool.performance = BigInt.fromI32(0);
+  }
   pool.isPrivatePool = contract.privatePool();
   pool.save();
 
@@ -243,7 +251,11 @@ export function handleWithdrawal(event: WithdrawalEvent): void {
   pool.totalSupply = contract.totalSupply();
   pool.performanceFactor = BigInt.fromI32(1);
   pool.availableManagerFee = contract.availableManagerFee();
-  pool.performance = pool.fundValue.div( pool.totalSupply.plus(pool.availableManagerFee) ).times( pool.performanceFactor );
+  if (pool.fundValue > BigInt.fromI32(0)){
+    pool.performance = pool.fundValue.div( pool.totalSupply.plus(pool.availableManagerFee) ).times( pool.performanceFactor );
+  } else {
+    pool.performance = BigInt.fromI32(0);
+  }
   pool.isPrivatePool = contract.privatePool();
   pool.tokenPrice = contract.tokenPrice();
   pool.save();
