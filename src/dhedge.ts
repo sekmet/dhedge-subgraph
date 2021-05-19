@@ -26,7 +26,7 @@ import {
   Withdrawal,
   Pool,
 } from '../generated/schema';
-import { dataSource, log, BigInt } from '@graphprotocol/graph-ts';
+import { dataSource, log } from '@graphprotocol/graph-ts';
 
 export function handleApproval(event: ApprovalEvent): void {
   let entity = new Approval(
@@ -76,7 +76,7 @@ export function handleDeposit(event: DepositEvent): void {
   pool.fundValue = contract.totalFundValue();
   pool.totalSupply = contract.totalSupply();
   pool.availableManagerFee = contract.availableManagerFee();
-  if (pool.fundValue){
+  if (!pool.fundValue.isZero()){
     pool.performance = pool.fundValue.div( pool.totalSupply.plus(pool.availableManagerFee) ).times( pool.performanceFactor );
   }
   pool.isPrivatePool = contract.privatePool();
@@ -133,7 +133,7 @@ export function handleExchange(event: ExchangeEvent): void {
   pool.managerName = contract.managerName();
   pool.totalSupply = contract.totalSupply();
   pool.availableManagerFee = contract.availableManagerFee();
-  if (pool.fundValue){
+  if (!pool.fundValue.isZero()){
     pool.performance = pool.fundValue.div( pool.totalSupply.plus(pool.availableManagerFee) ).times( pool.performanceFactor );
   }
   pool.isPrivatePool = contract.privatePool();
@@ -234,7 +234,7 @@ export function handleTransfer(event: TransferEvent): void {
   pool.totalSupply = contract.totalSupply();
   pool.performanceFactor = pool.performanceFactor.times(pool.fundValue).div(pool.fundValue.plus(event.params.value));
   pool.availableManagerFee = contract.availableManagerFee();
-  if (pool.fundValue.toI32() > 0){
+  if (!pool.fundValue.isZero()){
     pool.performance = pool.fundValue.div( pool.totalSupply.plus(pool.availableManagerFee) ).times( pool.performanceFactor );
   }
   pool.isPrivatePool = contract.privatePool();
@@ -266,7 +266,7 @@ export function handleWithdrawal(event: WithdrawalEvent): void {
   pool.fundValue = contract.totalFundValue();
   pool.totalSupply = contract.totalSupply();
   pool.availableManagerFee = contract.availableManagerFee();
-  if (pool.fundValue){
+  if (!pool.fundValue.isZero()){
     pool.performance = pool.fundValue.div( pool.totalSupply.plus(pool.availableManagerFee) ).times( pool.performanceFactor );
   }
   pool.isPrivatePool = contract.privatePool();
