@@ -26,7 +26,7 @@ import {
   Withdrawal,
   Pool,
 } from '../generated/schema';
-import { dataSource, log } from '@graphprotocol/graph-ts';
+import { BigInt, dataSource, log } from '@graphprotocol/graph-ts';
 
 export function handleApproval(event: ApprovalEvent): void {
   let entity = new Approval(
@@ -76,6 +76,9 @@ export function handleDeposit(event: DepositEvent): void {
   pool.fundValue = contract.totalFundValue();
   pool.totalSupply = contract.totalSupply();
   pool.availableManagerFee = contract.availableManagerFee();
+  if (pool.performanceFactor.isI32()){
+    pool.performanceFactor = BigInt.fromI32(pool.performanceFactor.toI32());
+  }
   if (!pool.fundValue.isZero()){
     pool.performance = pool.fundValue.div( pool.totalSupply.plus(pool.availableManagerFee) ).times( pool.performanceFactor );
   }

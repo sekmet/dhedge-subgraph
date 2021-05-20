@@ -1298,7 +1298,7 @@ export class Pool extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
-    this.set("performanceFactor", Value.fromI32(1));
+    this.set("performanceFactor", Value.fromBigInt(BigInt.fromI32(1)));
   }
 
   save(): void {
