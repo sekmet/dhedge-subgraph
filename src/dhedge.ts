@@ -220,25 +220,16 @@ export function handleTransfer(event: TransferEvent): void {
   let entity = new Transfer(
     event.transaction.hash.toHex() + '-' + event.logIndex.toString()
   );
-  let contract = DHedge.bind(event.params.to);
   let id = dataSource.address().toHexString();
   let pool = Pool.load(id);
   if (!pool) {
     log.info("Address != Pool: {}", [id]);
     return;
   }
-  pool.name = contract.name();
-  pool.manager = contract.manager();
-  pool.managerName = contract.managerName();
-  pool.fundValue = contract.totalFundValue();
-  pool.totalSupply = contract.totalSupply();
   pool.performanceFactor = pool.performanceFactor.times(pool.fundValue).div(pool.fundValue.plus(event.params.value));
-  pool.availableManagerFee = contract.availableManagerFee();
   if (!pool.fundValue.isZero()){
     pool.performance = pool.fundValue.div( pool.totalSupply.plus(pool.availableManagerFee) ).times( pool.performanceFactor );
   }
-  pool.isPrivatePool = contract.privatePool();
-  pool.tokenPrice = contract.tokenPrice();
   pool.save();
 
   entity.from = event.params.from;
