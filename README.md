@@ -21,6 +21,9 @@ This subgraph dynamically tracks any fund created by the dHEDGE factory. It trac
     fundAddress
     name
     fundValue
+    performance
+    performanceFactor
+    totalSupply
   }
 }
 ```
@@ -35,6 +38,8 @@ This subgraph dynamically tracks any fund created by the dHEDGE factory. It trac
     name
     managerName
     manager
+    performance
+    performanceFactor
     deposits {
       id
       investor
