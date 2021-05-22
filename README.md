@@ -1,4 +1,17 @@
-# dHEDGE Subgraph
+# dHEDGE Subgraph - #openDEfiHackathon
+
+## Challenge Description
+
+### Add new data for dHEDGE Pools in the subgraph
+
+At the moment, a Pool's performance (%) on dHEDGE is calculated via our internal backend API. Ideally, this data should be accessible to any developer so the protocol could be adopted in more front-ends/other systems.
+
+
+#### Git Repository: https://github.com/sekmet/dhedge-subgraph
+
+#### Updated dHEDGE Subgraph: https://thegraph.com/explorer/subgraph/sekmet/dhedge
+
+---
 
 [dHEDGE](https://www.dhedge.org/) is a non-custodial, decentralised asset management and trading protocol on Ethereum, enabling investors to gain exposure to actively-managed and algorithmic investment pools from a Web 3 wallet such as MetaMask. Investors can gain exposure to other pools with a demonstrated history of success, whilst remaining in possession of their assets.
 
